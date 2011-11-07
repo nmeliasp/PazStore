@@ -133,5 +133,103 @@ had Success with all unit tests except for  test "product attributes must not be
 
 
 
+****************************Catalog Listing******************************
+
+created new controller with:
+rails generate controller store index
+
+updated routes to go to store index in /config/routes:
+root :to => 'store#index', :as => 'store' 
+
+had to remove public/index.html by git rm public/index.html (using git to manage source code)
+
+updated store_controller to show all products:
+
+class StoreController < ApplicationController
+  def index
+    @products = Product.all
+  end
+
+end
+
+Displaying products in alphabetical order in /app/modes/product by: *********come back and play with this******
+
+class Product < ActiveRecord::Base
+default_scope :order => 'title' *****possible to do it by artist or song****
+
+
+
+
+Added the following to display products on page in app/store/index.html.erb
+<% if notice %>
+<p id = "notice"><%= notice %></p>
+<% end %>
+
+<h1> Your Music Catalog</h1>
+
+<% @products.each do |product| %>
+	<div class="entry">
+	<%= image_tag(product.image_url) %>
+	<h3> <%= product.title %></h3>
+	 <h5> <%= product.artist %></h5>
+	 <h6> <%= product.album %></h6>
+	 <div class="price_line">
+	 	<span class="price"><%= product.price %></span>
+	 </div>
+	</div>
+<% end %>
+ 
+improved display by editing /app/views/layouts/application.html.erb with:
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PazStore</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag    "depot", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body id="store">
+	<div id="banner">
+	<%= image_tag("logo.jpg") %>
+	<%= @page_title || "Paz Music Store" %>
+	</div>
+   <div id = "columns">
+   	<div id = "side">
+   		<a href= "http://www....">Home</a><br />
+   		<a href="mailto:nmeliasp@unm.edu">Contact Us</a><br />
+   	</div>
+   <div id="main">
+   	<%= yield %>
+   </div>
+  </div>
+</body>
+</html>
+
+Had to place logo.jpg in /public/assets
+
+
+Updated depot.css file with /* Styles for Main Page */****come back and play with colors and layouts
+
+added to app/views/store/index.html.erb for formating of te price
+<span class="price"><%= number_to_currency(product.price) %></span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
