@@ -8,10 +8,12 @@ one:
   image_url: MyString
   price: 9.99
 
-two:
-  title: MyString
-  artist: MyString
-  album: MyString
-  description: MyText
-  image_url: MyString
-  price: 9.99
+song:
+  title: With You
+  artist: Linkin Park
+  album: Hybrid Theory
+  description: length - x.xx
+  image_url: AThousandSuns.jpg
+  price: 1.99
+
+ 

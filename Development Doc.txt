@@ -1,0 +1,137 @@
+This Document contains notes on the development of my music store. 
+This will be used to note code that was entered or to play with as well as any other ideas. 
+
+********************10/18/2011***********************************
+Scaffold generation:
+rails generate scaffold Product title:string artist:string album:string description:text image_url:string price:decimal
+
+Read Chapter 6 and did the basic creation of a new rails app and set up my data base
+
+	made the suggested change to my 20111018195858_create_products.rb(Music_Store/db/migrate)
+class CreateProducts < ActiveRecord::Migration
+  def self.up
+    create_table :products do |t|
+      t.string :title
+      t.string :artist
+      t.string :album
+      t.text :description
+      t.string :image_url
+      t.decimal :price, precision => 8, :scale => 2
+
+      t.timestamps
+    end
+  end
+  def self.down
+      drop_table :products		*****investigate this option when development progresses. 
+  end
+end
+
+
+
+Began building my Seeds file with sample titles from Linkin Park. 
+Product.delete_all
+Product.create(:title => 'Burning In The Skies',
+  :artist => 'Linkin Park',
+  :album  => 'A Thousand Suns',
+  :description => 
+    %{<p>
+        Length - 4:13
+        Genre Alternative Rock
+        Composer - Linkin Park
+      </p>},
+  :image_url =>   '/images/wd4d.jpg',    
+  :price => 42.95)
+# . . .
+Start here next time and add more titles and download album cover picture. 
+
+
+
+*****************************11/4/2011***************************************************************************
+
+Finished adding sample tracks to my seed db seed file and added the cover image. 
+
+Adding the depot.css file to public/stylesheets directory. *****************Need to play with this***************
+
+Added code below to public/depot.css file to play with displaying title, artist and album 
+
+#product_list .list_title{
+ width:        20%;     
+}
+#product_list .list_title dl{
+ margin: 0;
+}
+
+#prodct_list .list_title dt{
+	color:       #fff;
+	font-weight: bold ;
+	font-size:   small;
+}
+
+#product_list .list_artist{
+ width:        20%;     
+}
+#product_list .list_artist dl{
+ margin: 0;
+}
+#prodct_list .list_artist dt{
+	color:       #fff;
+	font-weight: bold ;
+	font-size:   small;
+}
+#product_list .list_album{
+ width:        20%;     
+}
+#product_list .list_album dl{
+ margin: 0;
+}
+#prodct_list .list_album dt{
+	color:       #fff;
+	font-weight: bold; 
+	font-size:   small;
+}
+
+
+needed to move images folder from /app/assets/images to /public/
+
+
+Created Git repository PazStore and made my first commit and added my files 
+
+Added Validation for title....description, price, and Image URL
+
+Start at chapter 7 pg 80 when starting again. 
+
+
+
+**************************************11/7/2011 Unit Testing**************************************************************
+Having issues doing the units tests.... *****come back to this later or try out cucumber testing *******
+
+
+Had success with the following test.
+
+test"product price must be positive" do
+      product = Product.new(:title        => "My Song",
+                            :artist       => "My artist",
+                            :album        => "MyAlbum",
+                            :description  => "yyy",
+                            :image_url    => "zzz.jpg")
+  product.price = -1
+  assert product.invalid?
+  assert_equal "must be greater than or equal to 0.01",
+    product.errors[:price].join('; ')
+                             
+   product.price = 0 
+    assert product.invalid?
+    assert_equal "must be greater than or equal to 0.01",
+    product.errors[:price].join('; ')
+  
+    product.price = 1
+    assert product.valid?
+ 
+  end
+
+had Success with all unit tests except for  test "product attributes must not be empty"
+
+
+
+
+
