@@ -280,6 +280,34 @@ before_destroy :ensure_not_referenced_by_any_line_item
     end
 
 
+***********Adding a button*********
+added line to create the button in /app/views/store/index.html.erb:
+<%= button_to 'Add to Cart', line_items_path(:product_id => product) %>
+
+the following CSS puts the botton next to the price 
+#store .entry form, #store .entry form div{
+	display: inline;
+
+updated /app/controllers/line_items_controller so the shopping cart can find the current session, add the selected product to  that cart, and display that contents. 
+
+def create
+    @cart = current_cart
+    product = Product.find(params[:product_id])
+    @line_item = @cart.line_items.build(:product => product)
+    
+    respond_to do |format|
+      if @line_item.save
+        format.html { redirect_to @line_item.cart, notice: 'Line item was successfully created.' }
+        format.json { render json: @line_item, status: :created, location: @line_item }
+  
+
+updated app/views/carts/show.html.erb to display the contents of the cart. 
+
+
+start on chapter 10 pg 111 when continuing 
+
+
+
 
 
 

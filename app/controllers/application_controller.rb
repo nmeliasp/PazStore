@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     rescue ActiveRecord::RecordNotFound
         cart = Cart.create
         session[:cart_id] = cart.id
-        cart
+        return cart
     end
 
 end
