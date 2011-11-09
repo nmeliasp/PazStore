@@ -216,9 +216,68 @@ added to app/views/store/index.html.erb for formating of te price
 
 
 
+**********Cart Creation*****************************
+
+generated cart with and migrated it to db: 
+rails generate scaffold cart
+
+edited app/controllers/application_controller to store and index a cart id
+class ApplicationController < ActionController::Base
+  protect_from_forgery
+  
+  private
+  
+    def current_cart
+        Cart.find(session[:cart_id])
+    rescue ActiveRecord::RecordNotFound
+        cart = Cart.create
+        session[:cart_id] = cart.id
+        cart
+    end
 
 
+generated line_items and migrated to db:
+rails generate scaffold line_item product_id:integer cart_id:integer
 
+
+start on pg 103 to continue.
+
+*************************************11/9/2011*******************************************************************
+
+*****Connecting Products to Carts**********
+
+Connected line_items to the cart and added a destroy dependency 
+class Cart < ActiveRecord::Base
+
+has_many :line_items, :dependent => destroy
+end
+
+
+Connected line_items to product and cart
+class LineItem < ActiveRecord::Base
+belongs_to :product
+belongs_to :cart
+
+end
+
+
+Defined that product has many line items and check if a line is being referenced before being destroyed
+class Product < ActiveRecord::Base
+
+default_scope :order => 'title'
+has_many :line_items
+before_destroy :ensure_not_referenced_by_any_line_item
+#.....
+ private
+    #ensure that there are no line items referencing this product
+    def ensure_not_referenced_by_any_line_item
+        if line_items.empty?
+          return true
+    else 
+      errors.add(:base, 'Line Items Present')
+      return false
+      end
+    end
 
 
 
