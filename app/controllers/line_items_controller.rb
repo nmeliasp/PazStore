@@ -73,13 +73,17 @@ class LineItemsController < ApplicationController
 
   # DELETE /line_items/1
   # DELETE /line_items/1.json
-  def destroy
+   def destroy
     @line_item = LineItem.find(params[:id])
     @line_item.destroy
 
     respond_to do |format|
-      format.html { redirect_to line_items_url }
-      format.json { head :ok }
+      if current_cart.line_items.empty?
+        format.html {redirect_to(store_url, :notice => 'Your cart is now empty.')}
+      else
+      format.html { redirect_to(@line_item.cart, :notice => 'Item has been removed from your cart.') }
+      end
+      format.xml  { head :ok }
+     end
     end
   end
-end

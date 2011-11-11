@@ -86,4 +86,20 @@ end
       format.json { head :ok }
     end
   end
+
+  def continue
+    @cart = current_cart
+      respond_to do |format|
+      if @cart.save
+        format.html { redirect_to store_url, notice: 'Continue shopping.' }
+       
+      else
+        format.html { render action: "new" }
+        format.json { render json: @cart.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
+
 end
