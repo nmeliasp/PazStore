@@ -15,9 +15,16 @@
    <div id = "columns">
    	<div id = "side">
    		<p> It is now <%= Time.now %></p>
-   		<a href= "http://www....">Home</a><br />
-   		<a href="mailto:nmeliasp@unm.edu">Contact Us</a><br />
-   	</div>
+   			<div id = "cart"
+   		
+   			<%= render @cart %>
+   			<a href= "http://www....">Home</a><br />
+   			<a href="mailto:nmeliasp@unm.edu">Contact Us</a><br />
+   		</div>	
+   		
+   		
+   </div>
+   
    <div id="main">
    	<%= yield %>
    </div>
