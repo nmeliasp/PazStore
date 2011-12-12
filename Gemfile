@@ -1,12 +1,14 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
+gem 'prototype-rails'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
 gem 'ffi', '1.0.9'
+gem 'devise'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -35,4 +37,6 @@ group :test do
  gem 'capybara'
  gem 'rspec-rails'
  gem 'minitest'
+ gem 'factory_girl_rails'
 end
+#gem metricule - used to tell how code coverage tests cover. 
