@@ -18,30 +18,30 @@ class CartsControllerTest < ActionController::TestCase
 
   test "should create cart" do
     assert_difference('Cart.count') do
-      post :create, cart: @cart.attributes
+      post :create, :cart => @cart.attributes
     end
 
     assert_redirected_to cart_path(assigns(:cart))
   end
 
   test "should show cart" do
-    get :show, id: @cart.to_param
+    get :show, :id => @cart.to_param
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @cart.to_param
+    get :edit, :id => @cart.to_param
     assert_response :success
   end
 
   test "should update cart" do
-    put :update, id: @cart.to_param, cart: @cart.attributes
+    put :update, :id => @cart.to_param, :cart => @cart.attributes
     assert_redirected_to cart_path(assigns(:cart))
   end
 
   test "should destroy cart" do
     assert_difference('Cart.count', -1) do
-      delete :destroy, id: @cart.to_param
+      delete :destroy, :id => @cart.to_param
     end
 
     assert_redirected_to carts_path

@@ -76,10 +76,12 @@ background: #3366ff;
 
 /* Styles for products/index */
 
+/*
 #product_list table {
         border-collapse: collapse;
 }
 
+*/
 #product_list table tr td {
         padding: 5px;
         vertical-align: top;

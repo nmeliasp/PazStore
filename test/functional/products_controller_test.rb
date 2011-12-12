@@ -62,19 +62,19 @@ test "should get index" do
   end
 
   test "should show product" do
-    get :show, id: @product.to_param
+    get :show, :id => @product.to_param
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @product.to_param
+    get :edit, :id => @product.to_param
     assert_response :success
   end
 
  
   test "should destroy product" do
     assert_difference('Product.count', -1) do
-      delete :destroy, id: @product.to_param
+      delete :destroy, :id => @product.to_param
     end
 
     assert_redirected_to products_path

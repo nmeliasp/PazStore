@@ -9,9 +9,6 @@
 </head>
 <body id="store">
 	<div id="banner">
-	<%= form_tag store_path, :class => 'local' do %>
-		<%= javascript_tag "$('.local input').hide()" %>
-		<% end %>
 	<%= image_tag("logo.jpg") %>
 	<%= @page_title || "Paz Music Store" %>
 	</div>

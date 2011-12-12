@@ -1,0 +1,4 @@
+page.replace_html('cart', render(@cart))
+var line_item = $("<%= escape_javascript(render(:partial => @cart))%>").hide();
+$('#line_item<%= @line_item.id %>').fadeIn('slow');
+$('#new_line_item')[0].reset();
