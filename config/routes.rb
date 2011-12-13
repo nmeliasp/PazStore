@@ -1,7 +1,12 @@
 PazStore::Application.routes.draw do
+ devise_for :users do
+  get 'logout' => 'devise/sessions#destroy'
+end
+
+
   resources :orders
 
-  #devise_for :users
+  
 
  resources :line_items do
     put 'decrease', on: :member
@@ -65,7 +70,7 @@ PazStore::Application.routes.draw do
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
     root :to => 'store#index', :as => 'store'
-
+    root :to => 'home#index'
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
