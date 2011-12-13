@@ -1,7 +1,12 @@
 PazStore::Application.routes.draw do
+  resources :orders
+
   #devise_for :users
 
-  resources :line_items
+ resources :line_items do
+    put 'decrease', on: :member
+    
+  end
 
   resources :carts
 

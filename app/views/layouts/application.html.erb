@@ -19,13 +19,15 @@
    	<div id = "side">
    		<p> It is now <%= Time.now %></p>
    			<div id = "cart">
-   		
-   			<%= render @cart %>
+				<% if @cart %>
+					<%= hidden_div_if(@cart.line_items.empty?, :id => "cart") do %>   		
+   						<%= render @cart %>
+					<% end %>
+				<% end %>
    			<a href= "http://www....">Home</a><br />
    			<a href="mailto:nmeliasp@unm.edu">Contact Us</a><br />
-   		</div>	
-   		
-   		
+   			
+		</div>			
    </div>
    
    <div id="main">

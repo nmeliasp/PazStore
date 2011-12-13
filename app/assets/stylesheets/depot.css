@@ -38,9 +38,10 @@ background: #33ccff;
 }
 
 #main {
-margin-left: 12em;
+width 5em;
+margin-left: 16.5em;
 padding-top: 4ex;
-padding-left: 2em;
+padding-left: 1em;
 background: #ccffff;
 }
 #side {
@@ -48,7 +49,8 @@ float: left;
 padding-top: 1em;
 padding-left: 1em;
 padding-bottom: 1em;
-width: 11em;
+padding-right: 1.5em;
+width: 14em;
 background: #3366ff;
 }
 
@@ -76,12 +78,12 @@ background: #3366ff;
 
 /* Styles for products/index */
 
-/*
+
 #product_list table {
         border-collapse: collapse;
 }
 
-*/
+
 #product_list table tr td {
         padding: 5px;
         vertical-align: top;
@@ -164,7 +166,10 @@ background: #3366ff;
 
 #store  .entry {
   overflow: auto;
+  padding-left: 10em;
   margin-top: 1em;
+  margin-left 20em;
+  margin-right 20em;
   border-bottom: 1px dotted #77d;
 }
 
